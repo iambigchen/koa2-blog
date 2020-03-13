@@ -1,4 +1,6 @@
-1. open your redis server `redis-server`
+### koa2 + redis + mysql实现微博基本功能 
+
+1. 启动 redis server `redis-server`
 
 2. 修改`src/config/db.js` 下的`redis`和`mysql`的配置
 
