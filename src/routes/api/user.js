@@ -2,7 +2,7 @@
  * @Author: chenyu
  * @Date: 2020-03-10 10:19:00
  * @Last Modified by: chenyu
- * @Last Modified time: 2020-03-13 14:46:02
+ * @Last Modified time: 2020-03-13 19:16:01
  */
 /**
  * @description user API 路由
@@ -63,4 +63,8 @@ router.get('/getAtList', loginCheck, async (ctx, next) => {
   })
   ctx.body = list
 })
+
+// router.psot('/delete', loginCheck, async (ctx, next) => {
+
+// })
 module.exports = router
