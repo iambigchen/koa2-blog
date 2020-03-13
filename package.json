@@ -37,6 +37,10 @@
     "babel-eslint": "7.1.1",
     "eslint": "3.18.0",
     "jest": "^25.1.0",
+    "pre-commit": "^1.2.2",
     "supertest": "^4.0.2"
-  }
+  },
+  "pre-commit": [
+    "test"
+  ]
 }
