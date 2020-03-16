@@ -2,7 +2,7 @@
  * @Author: chenyu
  * @Date: 2020-03-10 10:19:00
  * @Last Modified by: chenyu
- * @Last Modified time: 2020-03-13 19:16:01
+ * @Last Modified time: 2020-03-16 11:58:42
  */
 /**
  * @description user API 路由
@@ -10,11 +10,12 @@
  */
 
 const router = require('koa-router')()
-const {register, isExist, login, changeInfo, changePassword, logout} = require('../../controller/user')
+const {register, isExist, login, changeInfo, changePassword, logout, deleteCurUser} = require('../../controller/user')
 const userValidate = require('../../validator/user')
 const {genValidator} = require('../../middlewares/validator')
 const {loginCheck} = require('../../middlewares/logincheck')
 const {getFollowers} = require('../../controller/user-relation')
+const {isTest} = require('../../utils/env')
 router.prefix('/api/user')
 
 // 用户是否存在
@@ -64,7 +65,12 @@ router.get('/getAtList', loginCheck, async (ctx, next) => {
   ctx.body = list
 })
 
-// router.psot('/delete', loginCheck, async (ctx, next) => {
-
-// })
+// 删除用户
+router.post('/delete', loginCheck, async (ctx, next) => {
+  if (isTest) {
+    const { userName } = ctx.session.userInfo
+    const result = await deleteCurUser(userName)
+    ctx.body = result
+  }
+})
 module.exports = router

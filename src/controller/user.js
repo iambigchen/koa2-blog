@@ -2,7 +2,7 @@
  * @Author: chenyu
  * @Date: 2020-03-11 16:27:50
  * @Last Modified by: chenyu
- * @Last Modified time: 2020-03-13 11:28:10
+ * @Last Modified time: 2020-03-16 11:41:12
  */
 /*
  * @Author: chenyu
@@ -15,7 +15,7 @@
  * @author cy
  */
 const {SuccessModel, ErrorModel} = require('../models/ResModel')
-const {getUserInfo, createUser, updateUser} = require('../services/user')
+const {getUserInfo, createUser, updateUser, deleteUserByUserName} = require('../services/user')
 const {registerFailInfo, registerUserNameExistInfo, registerUserNameNotExistInfo, loginFailInfo, changeInfoFailInfo} = require('../models/ErrorInfo')
 const doCrypto = require('../utils/cryp')
 /**
@@ -143,11 +143,21 @@ async function logout(ctx) {
   return new SuccessModel()
 }
 
+/**
+ * 根据用户名删除用户
+ * @param {string} userName 用户名
+ */
+async function deleteCurUser(userName) {
+  const result = await deleteUserByUserName(userName)
+  return new SuccessModel(result)
+}
+
 module.exports = {
   register,
   isExist,
   login,
   changeInfo,
   changePassword,
+  deleteCurUser,
   logout
 }

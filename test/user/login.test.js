@@ -86,7 +86,10 @@ test('修改密码，应该成功', async () => {
   expect(res.body.errno).toBe(0)
 })
 
-// // 删除用户
-// test('删除用户，应该成功', async () => {
-
-// })
+// 删除用户
+test('删除用户，应该成功', async () => {
+  const res = await server.post('/api/user/delete').set({
+    'cookie': COOKIE
+  })
+  expect(res.body.errno).toBe(0)
+})

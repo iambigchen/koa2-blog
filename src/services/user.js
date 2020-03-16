@@ -87,8 +87,23 @@ async function updateUser(
   return result[0] > 0 // 修改的行数
 }
 
+/**
+ * 删除用户根据用户名
+ * @param {string} userName 用户名
+ */
+async function deleteUserByUserName(userName) {
+  const result =  await User.destroy({
+    where: {
+      userName
+    }
+  })
+  // result 删除的行数
+  return result > 0
+}
+
 module.exports = {
   createUser,
   getUserInfo,
-  updateUser
+  updateUser,
+  deleteUserByUserName
 }
