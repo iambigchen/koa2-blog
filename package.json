@@ -3,8 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "cross-env NODE_ENV=dev nodemon bin/www.js",
-    "test": "cross-env NODE_ENV=test jest --runInBand --forceExit --colors",
+    "dev": "cross-env NODE_ENV=dev nodemon --ignore 'test/*'  bin/www.js",
+    "test": "cross-env NODE_ENV=test jest --runInBand --forceExit --detectOpenHandles --colors",
+    "prd": "cross-env NODE_ENV=production pm2 start pm2.conf.json",
     "sync": "node src/db/sync",
     "start": "node bin/www.js"
   },

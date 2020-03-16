@@ -14,7 +14,6 @@ const ajv = new Ajv({
  */
 function validate(schema, data = {}) {
   let valid = ajv.validate(schema, data)
-  console.log('valid', valid)
   if (!valid) {
     return ajv.errors[0]
   }
