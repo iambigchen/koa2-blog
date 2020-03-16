@@ -93,3 +93,19 @@ test('删除用户，应该成功', async () => {
   })
   expect(res.body.errno).toBe(0)
 })
+
+// 退出登录
+test('退出登录', async () => {
+  const res = await server
+    .post('/api/user/logout')
+    .set('cookie', COOKIE)
+  expect(res.body.errno).toBe(0)
+})
+
+// 删除用户后，应该不存在
+test("删除用户后，应该不存在", async () => {
+  const res = await server.post('/api/user/isExist').send({
+    userName: testUser.userName
+  })
+  expect(res.body.errno).not.toBe(0)
+})
